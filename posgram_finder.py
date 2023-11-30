@@ -1,5 +1,6 @@
 import json
 import stanza
+from stanza.pipeline.core import DownloadMethod
 
 class PosgramFinder:
     def __init__(self, lower_percentage_limit=5):
