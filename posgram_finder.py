@@ -60,12 +60,23 @@ class PosgramFinder:
 
             koht+=1
            kolmikud=list(filter(lambda kolmik: kolmik[2], kolmikud))
+           kandidaadid=[]           
            for kolmik in kolmikud:
-             kolmik.append(" ".join([sona.text for sona in lause.words[kolmik[0]:kolmik[1]]]))
-             kolmik.append(jada[kolmik[0]:kolmik[1]])
+              kandidaat={
+                 "value":" ".join([sona.text for sona in lause.words[kolmik[0]:kolmik[1]]]),
+                 "posgram":jada[kolmik[0]:kolmik[1]],
+                 "start_token":kolmik[0],
+                 "end_token":kolmik[1],
+                 "trigram":kolmik[3],
+                 "type":"post" if kolmik[4]=="taga" else "pre",
+                 "context":kolmik[5],
+                 "percent":kolmik[6]
+              }
+              kandidaadid.append(kandidaat)
            vastus.append({
              "sentence": lause.text,
-             "error_candidates": kolmikud
+             "sentence_posgram": "^"+jada,
+             "error_candidates": kandidaadid
            })           
         return vastus
 
