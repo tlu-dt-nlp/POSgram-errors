@@ -6,7 +6,7 @@ class PosgramFinder:
       with open("osakaalud_koik_ees.txt") as f1:  self.osakaalud_ees=json.load(f1)
       with open("osakaalud_koik_taga.txt") as f1: self.osakaalud_taga=json.load(f1)
       self.protsendipiir=lower_percentage_limit
-      self.nlp=stanza.Pipeline(lang="et", processors="tokenize,pos")
+      self.nlp=stanza.Pipeline(lang="et", processors="tokenize,pos", download_method=DownloadMethod.REUSE_RESOURCES)
 
     def posgram_errors(self, text):
         dok=self.nlp(text)
