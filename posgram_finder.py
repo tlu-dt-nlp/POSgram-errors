@@ -4,8 +4,8 @@ from stanza.pipeline.core import DownloadMethod
 
 class PosgramFinder:
     def __init__(self, lower_percentage_limit=5):
-      with open("osakaalud_koik_ees.txt") as f1:  self.osakaalud_ees=json.load(f1)
-      with open("osakaalud_koik_taga.txt") as f1: self.osakaalud_taga=json.load(f1)
+      with open("model_precontext.txt") as f1:  self.osakaalud_ees=json.load(f1)
+      with open("model_postcontext.txt") as f1: self.osakaalud_taga=json.load(f1)
       self.protsendipiir=lower_percentage_limit
       self.nlp=stanza.Pipeline(lang="et", processors="tokenize,pos", download_method=DownloadMethod.REUSE_RESOURCES)
 
@@ -16,13 +16,13 @@ class PosgramFinder:
            kolmikud=[]
            jada="".join([sona.xpos for sona in lause.words])+"$"
            koht=0
-           print(jada)
+           print("^"jada)
            while koht<len(jada)-2:
-            if jada[koht]!='Z':
+            if jada[koht]!="Z":
              abi=koht
              kolmik=""
              while len(kolmik)<3 and abi<len(jada)-1:
-                if jada[abi]!='Z':
+                if jada[abi]!="Z":
                   kolmik+=jada[abi]
                 abi+=1
              kolmikuots=abi
@@ -31,7 +31,7 @@ class PosgramFinder:
                 taga=jada[abi]
                 otsakoht=abi+1
                 abi=koht-1                
-                while abi>=0 and jada[abi]=='Z': abi-=1
+                while abi>=0 and jada[abi]=="Z": abi-=1
                 if abi>=0: 
                     ees=jada[abi]
                     alguskoht=abi
