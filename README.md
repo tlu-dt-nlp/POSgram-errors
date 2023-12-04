@@ -33,3 +33,7 @@ PosgramFinder(lower_percentage_limit=2.5)
 Although a rare POS sequence does not always indicate an error, POS-gram analysis is useful in pointing out word order, word choice, unnecessary and missing word errors. The tool has been evaluated on the [EstGEC-L2](https://github.com/tlu-dt-nlp/EstGEC-L2-Corpus) test set. Its error detection precision was **65.1%**, taking into account the number of unlikely POS-grams that fully or partly overlap with gold standard error annotation. Error detection recall was **37.1%**, considering all annotated error types, and the F0.5 score **56.6%**. Reducing the low-probability boundary increases precision (73.7% in case of 2%) but drastically decreases recall (10.6% in case of 2%).
 
 Precision can be improved by exploring which POS-grams indicate errors more reliably and which should be disregarded. Qualitative analysis of the test results along with the most probable POS combinations revealed by the statistical model can inform the development of a correction suggestion functionality. Including punctuation marks in the analysis can also be beneficial.
+
+## References
+
+Associated conference presentation: [20th Annual Conference of Applied Linguistics, April 27-28, 2023, Tallinn](https://www.rakenduslingvistika.ee/wp-content/uploads/2023/05/03_Eslon_Kippar_Keelekasutusmustrid_kontekstid1.pdf) (in Estonian)
