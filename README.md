@@ -3,7 +3,7 @@
 The tool helps to find unlikely word sequences in Estonian texts based on the words' part-of-speech (POS). It converts each sentence to a POS string and detects potential errors by looking at the usage context of trigrams, i.e., three-word sequences. The probability of a preceding or subsequent context (either a certain POS, the beginning or end of a sentence) is estimated using a statistical model which is based on the Estonian Reference Corpus (the version available as a subcorpus of the [Estonian National Corpus](https://metashare.ut.ee/repository/browse/estonian-national-corpus-2021-vert/f176ccc0d05511eca6e4fa163e9d454794df2849e11048bb9fa104f1fec2d03f/)).
 
 ## Usage
-Usage examples can be found in the Colab file `posgram_finder_demo.ipynb` and the Python script `example.py`.
+Usage examples can be found in the Python script `example.py`, and Colab files `error_finder_demo_en.ipynb` and `error_finder_demo_et.ipynb`.
 
 The [Stanza NLP package](https://stanfordnlp.github.io/stanza/) is applied for POS tagging. Language-specific ('XPOS') tags are used to group words into POS n-grams, or POS-grams. Custom tags are used to denote sentence onset and ending. The tagset is explained in the following table.
 | Tag | Meaning |
@@ -11,6 +11,7 @@ The [Stanza NLP package](https://stanfordnlp.github.io/stanza/) is applied for P
 | ^ | Sentence onset |
 | A | Adjective |
 | D | Adverb |
+| G | Genitive attribute |
 | I | Interjection |
 | J | Conjunction |
 | K | Adposition |
@@ -18,8 +19,11 @@ The [Stanza NLP package](https://stanfordnlp.github.io/stanza/) is applied for P
 | P | Pronoun |
 | S | Substantive/Noun |
 | V | Verb |
+| X | Auxiliary adverb |
+| Y | Abbreviation |
 | Z | Punctuation |
 | $ | Sentence ending |
+
 
 In the current version, punctuation is skipped when analysing word sequences. It means that words in a trigram or their preceding/subsequent words may not be adjacent. For example, 'SZSZS' is considered an instance of the trigram 'SSS', however, punctuation marks are shown in the POS-gram representation of the sentence (e.g., '^DVDSZSZSZ$') and potential error span that covers the trigram and its context (e.g., 'DSZSZS').
 
